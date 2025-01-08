@@ -1,95 +1,100 @@
-Reddit Web Scraper with Gemini API Integration
+# Reddit Content Enhancement Tool
 
-This project is a Reddit web scraper that fetches Reddit posts and uses the Gemini API to improve the grammar and presentation of the content. The processed content is designed to be more readable and TTS (Text-to-Speech) friendly.
+This project consists of a Reddit web scraper that feeds content to the Gemini API for grammar improvements and text-to-speech optimization. The system uses a Flask backend and Next.js frontend.
 
-Features
+## Prerequisites
 
-Scrapes Reddit posts based on user-defined criteria.
+- Python 3.x
+- Node.js and npm
+- Google Cloud Project with Gemini API enabled
 
-Sends the scraped content to the Gemini API for grammatical corrections and improvements.
+## Project Structure
 
-Provides an improved, TTS-friendly version of the content.
+```
+project/
+├── frontend/         # Next.js frontend
+└── server/          # Flask backend
+    ├── requirements.txt
+    └── .env         # Environment variables
+```
 
-Prerequisites
+## Installation
 
-Python 3.8 or higher
+### 1. Set Up Virtual Environment
 
-Node.js 16.x or higher
+```bash
+# Create a virtual environment
+python -m venv venv
 
-Git
+# Activate virtual environment
+# On Windows
+venv\Scripts\activate
+# On macOS/Linux
+source venv/bin/activate
+```
 
-Setup and Installation
+### 2. Install Python Dependencies
 
-1. Create a Virtual Environment
-
-Navigate to the /server directory and create a virtual environment:
-
+```bash
 cd server
-python3 -m venv .venv
-source .venv/bin/activate # On Linux/Mac
-.venv\Scripts\activate # On Windows
-
-2. Install Python Packages
-
-Install the required Python packages from requirements.txt:
-
 pip install -r requirements.txt
+```
 
-3. Install Node Packages
+### 3. Install Node Dependencies
 
-Navigate to the /frontend directory and install the required Node packages:
-
-cd ../frontend
+```bash
+cd frontend
 npm install
+```
 
-4. Configure Environment Variables
+### 4. Environment Configuration
 
-In the /server directory, create a .env file:
+Create a `.env` file in the `/server` directory and add the following:
 
-cd ../server
-touch .env
+```env
+GEMINI_API_KEY="Add your key here"
+PROMPT="Fix all grammatical mistakes in this and make it more presentable along with using full stops and other punctioations to make the content more TTS friendly"
+```
 
-Add the following environment variables to the .env file:
+## Running the Application
 
-GEMINI_API_KEY = "Add your key here"
-PROMPT = "Fix all grammatical mistakes in this and make it more presentable along with using full stops and other punctuations to make the content more TTS friendly."
+### Start the Flask Backend
 
-5. Run the Servers
+```bash
+# From the server directory
+flask run
+```
 
-Start the Flask Server:
+### Start the Next.js Frontend
 
-In the /server directory, run:
-
-python app.py
-
-Start the Next.js Server:
-
-In the /frontend directory, run:
-
+```bash
+# From the frontend directory
 npm run dev
+```
 
-Usage
+The application should now be running with:
 
-Access the Next.js frontend through the browser at http://localhost:3000.
+- Backend server at `http://localhost:5000`
+- Frontend server at `http://localhost:3000`
 
-Enter the required parameters for scraping Reddit posts.
+## Environment Variables
 
-The backend will process the content and use the Gemini API to improve its grammar and presentation.
+| Variable         | Description                               |
+| ---------------- | ----------------------------------------- |
+| `GEMINI_API_KEY` | Your Google Gemini API key                |
+| `PROMPT`         | The system prompt for content enhancement |
 
-View or download the improved content through the frontend.
+## Additional Notes
 
-Notes
+- Ensure both servers are running simultaneously for the application to work properly
+- The virtual environment must be activated before running the Flask server
+- Make sure to replace the Gemini API key with your actual API key
 
-Ensure that your GEMINI_API_KEY is valid for the Gemini API to work correctly.
+## Troubleshooting
 
-Adjust the PROMPT in the .env file for specific improvements or formatting.
+If you encounter any issues:
 
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Acknowledgments
-
-Reddit API for scraping Reddit content.
-
-Gemini API for improving content grammar and presentation.
+1. Verify that all dependencies are properly installed
+2. Ensure the virtual environment is activated
+3. Check that the `.env` file is properly configured in the server directory
+4. Confirm both servers are running on their respective ports
